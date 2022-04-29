@@ -1,25 +1,26 @@
-import React from 'react';
-import InventoryItem from './InventoryItem/InventoryItem';
-import  { useEffect, useState } from "react";
+import React from "react";
+import useItems from "../../Hooks/useItems";
+import Item from "./Item.js/Item";
+
+
 const Home = () => {
-    
-    const [items, setItems]=useState([])
-    useEffect(()=>{
-        fetch('items.json')
-        .then(res=>res.json())
-        .then(data=>setItems(data))
-    },[])
-    return (
-        <div>
-            <p>home</p>
-            <section className='container my-10 mx-auto grid lg:grid-cols-3 
-            md:grid-cols-3  gap-8  justify-center items-center'>
-                {
-                    items.map(item=><InventoryItem key={item.id} item={item}></InventoryItem>)
-                }
-            </section>
-        </div>
-    );
+  const [items] = useItems("http://localhost:5000/items");
+  if (items.length) {
+    items.length = 6;
+  }
+  return (
+    <div>
+      <p>home</p>
+      <section
+        className="container my-10 mx-auto grid lg:grid-cols-3 
+            md:grid-cols-3  gap-8  justify-center items-center"
+      >
+        {items.map((item) => (
+          <Item key={item._id} item={item}></Item>
+        ))}
+      </section>
+    </div>
+  );
 };
 
 export default Home;
