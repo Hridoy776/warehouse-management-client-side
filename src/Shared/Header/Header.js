@@ -25,21 +25,21 @@ const Header = () => {
           </label>
           <ul
             tabIndex="0"
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-zinc-900 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link to="/home">Home</Link>
             </li>
 
             <li>
-              <a>Item 3</a>
+              <Link to="/login">login</Link>
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
+        <Link to="/" className="  btn btn-ghost normal-case text-xl">daisyUI</Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal p-0">
+      <div className="navbar-end hidden lg:flex ">
+        <ul className="menu menu-horizontal   px-20">
           <li>
             <Link to="/home">home</Link>
           </li>
@@ -56,9 +56,7 @@ const Header = () => {
           
         </ul>
       </div>
-      <div className="navbar-end">
-        <button className="btn bg-rose-500">Get started</button>
-      </div>
+      
       </div>
     </div>
   );
