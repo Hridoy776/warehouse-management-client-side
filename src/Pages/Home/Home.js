@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useItems from "../../Hooks/useItems";
 import Item from "./Item.js/Item";
 
@@ -18,6 +19,7 @@ const Home = () => {
         {items.map((item) => (
           <Item key={item._id} item={item}></Item>
         ))}
+        <Link to="/manage">manage</Link>
       </section>
     </div>
   );

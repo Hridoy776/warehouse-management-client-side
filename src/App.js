@@ -6,6 +6,9 @@ import Footer from "./Shared/Header/Footer/Footer";
 import Login from "./Pages/Login/Login";
 import Inventory from "./Pages/Inventory/Inventory";
 import Notfound from "./Pages/NotFound/Notfound";
+import Register from "./Pages/Login/Register/Register";
+import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
+import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 
 function App() {
   return (
@@ -15,7 +18,14 @@ function App() {
         <Route path="/" element={<Home></Home>}/>
         <Route path="/home" element={<Home></Home>}/>
         <Route path="/login" element={<Login></Login>}/>
-        <Route path="/inventory/:id" element={<Inventory></Inventory>}/>
+        <Route path="/register" element={<Register></Register>}/>
+        <Route path="/inventory/:id" element={<RequireAuth>
+          <Inventory></Inventory>
+        </RequireAuth>}/>
+        <Route path="/manage" element={<RequireAuth>
+          <ManageInventory></ManageInventory>
+        </RequireAuth>}/>
+        
         <Route path="*" element={<Notfound></Notfound>}/>
       </Routes>
       <Footer></Footer>

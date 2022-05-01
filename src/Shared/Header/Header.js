@@ -1,7 +1,15 @@
 import React from "react";
+import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../../firebase.init";
 
 const Header = () => {
+    const [user]=useAuthState(auth);
+
+    const handleSingOut=()=>{
+       signOut(auth)
+    }
   return (
     <div className="   navbar bg-neutral text-neutral-content">
       <div className="container mx-auto ">
@@ -50,7 +58,11 @@ const Header = () => {
             <Link to="/home">home</Link>
           </li>
           <li>
-            <Link to="/home">home</Link>
+            {
+                user ? <button  onClick={handleSingOut}>signout</button>  : <Link to="/login">Login</Link>
+            }
+                
+            
           </li>
 
           
