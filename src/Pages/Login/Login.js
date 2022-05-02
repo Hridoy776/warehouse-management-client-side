@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import auth from "../../firebase.init";
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -17,10 +17,11 @@ const Login = () => {
       const navigate=useNavigate;
       const location=useLocation()
       let from = location.state?.from?.pathname || "/";
-      if(user){
+      useEffect(()=>{if(user){
         navigate(from, { replace: true });
-      }
+      }},[user,from,navigate])
       let errorElement;
+      console.log(error)
       if(error){
         errorElement=<p>{error.message}</p>
       }
@@ -30,6 +31,7 @@ const Login = () => {
           const email =e.target.email.vlaue;
           const password=e.target.password.value;
           signInWithEmailAndPassword(email, password)
+          e.target.reset()
       }
   return (
     <div>

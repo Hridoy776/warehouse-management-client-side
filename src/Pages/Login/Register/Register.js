@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,18 +7,23 @@ import SocialSignIn from "../SocialSignIn/SocialSignIn";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
+    useCreateUserWithEmailAndPassword(auth,{sendEmailVerification: true});
+    
   const navigate = useNavigate();
   if (loading) {
   }
   if (user) {
     navigate("/home");
   }
-  const handleSingUp = (e) => {
+  let errorElement;
+  if(error){
+    errorElement=<p>{error.message}</p>
+  }
+  const handleSingUp = async(e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    createUserWithEmailAndPassword(email, password);
+    await createUserWithEmailAndPassword(email, password);
     e.target.reset();
   };
   return (
@@ -41,6 +47,7 @@ const Register = () => {
           placeholder="password"
         />
         <br />
+        {errorElement}
         <input
           className="btn btn-active mb-2 w-[300px] bg-[purple]"
           type="submit"
