@@ -1,13 +1,11 @@
-import { async } from "@firebase/util";
+
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import useItems from "../../Hooks/useItems";
+
 
 const Inventory = () => {
   const { id } = useParams();
   const [item, setItem] = useState({});
-
-  const [items] = useItems("http://localhost:5000/items");
   useEffect(() => {
     const url = `http://localhost:5000/item/${id}`;
     fetch(url)
@@ -34,7 +32,6 @@ const Inventory = () => {
         });
       const { quantity, ...rest } = item;
       const updateItem=rest;
-      console.log(newQuantity.quantity)
       updateItem["quantity"]=newQuantity.quantity;
       setItem(updateItem)
     }
@@ -62,7 +59,6 @@ const Inventory = () => {
 
       const { quantity, ...rest } = item;
       const updateItem=rest;
-      console.log(newQuantity.quantity)
       updateItem["quantity"]=newQuantity.quantity;
       setItem(updateItem)
     }

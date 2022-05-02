@@ -20,6 +20,10 @@ const Login = () => {
       if(user){
         navigate(from, { replace: true });
       }
+      let errorElement;
+      if(error){
+        errorElement=<p>{error.message}</p>
+      }
 
       const handleSingIn=e=>{
           e.preventDefault()
@@ -39,7 +43,7 @@ const Login = () => {
           placeholder="email"
         />
         <br />
-
+        {errorElement}
         <input
           className="border-solid rounded-md py-1 w-[300px] mb-5 px-2 border-2 border-gray-600"
           type="password"

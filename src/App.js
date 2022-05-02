@@ -10,6 +10,7 @@ import Register from "./Pages/Login/Register/Register";
 import RequireAuth from "./Pages/Login/RequireAuth/RequireAuth";
 import ManageInventory from "./Pages/ManageInventory/ManageInventory";
 import AddItem from "./Pages/AddItem/AddItem";
+import MyItem from "./Pages/MyItem/MyItem";
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         </RequireAuth>}/>
         <Route path="/additem" element={<RequireAuth>
           <AddItem></AddItem>
+        </RequireAuth>}/>
+        <Route path="/myitem" element={<RequireAuth>
+          <MyItem></MyItem>
         </RequireAuth>}/>
         
         
