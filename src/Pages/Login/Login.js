@@ -30,7 +30,7 @@ const Login = () => {
   return (
     <div>
       <p>login</p>
-      <form onSubmit={handleSingIn}>
+      <form  className="w-[360px] bg-[#e45ee4] py-4 mx-auto rounded-xl" onSubmit={handleSingIn}>
         <input
           className="border-solid rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
           type="email"

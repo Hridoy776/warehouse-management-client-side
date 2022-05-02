@@ -1,10 +1,13 @@
+import { async } from "@firebase/util";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import useItems from "../../Hooks/useItems";
 
 const Inventory = () => {
   const { id } = useParams();
   const [item, setItem] = useState({});
- const [newItem, setNewItem]=useState({})
+
+  const [items] = useItems("http://localhost:5000/items");
   useEffect(() => {
     const url = `http://localhost:5000/item/${id}`;
     fetch(url)
@@ -26,20 +29,25 @@ const Inventory = () => {
         body: JSON.stringify(newQuantity),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .then((data) => {
+          console.log(data);
+        });
+      const { quantity, ...rest } = item;
+      const updateItem=rest;
+      console.log(newQuantity.quantity)
+      updateItem["quantity"]=newQuantity.quantity;
+      setItem(updateItem)
     }
-    
-    
   };
 
-  const handleRestore=e=>{
-    e.preventDefault()
-    const quantity=e.target.number.value;
+  const handleRestore = (e) => {
+    e.preventDefault();
+    const inputquantity = e.target.number.value;
 
     const url = `http://localhost:5000/item/${id}`;
     if (item.quantity) {
       const newQuantity = {
-        quantity: parseInt(item.quantity) + parseInt(quantity),
+        quantity: parseInt(item.quantity) + parseInt(inputquantity),
       };
       fetch(url, {
         method: "PUT",
@@ -50,36 +58,41 @@ const Inventory = () => {
       })
         .then((res) => res.json())
         .then((data) => console.log(data));
+      e.target.reset();
+
+      const { quantity, ...rest } = item;
+      const updateItem=rest;
+      console.log(newQuantity.quantity)
+      updateItem["quantity"]=newQuantity.quantity;
+      setItem(updateItem)
     }
-    
-  }
-  
+  };
 
   return (
     <div>
       <div>
-      <h3>{item.name}</h3>
-      <p>quantity:{item.quantity}</p>
-      <button onClick={delevary} className="btn btn-primary">
-        delevered
-      </button>
+        <h3>{item.price}</h3>
+        <p>quantity:{item.quantity}</p>
+        <button onClick={delevary} className="btn btn-primary">
+          delevered
+        </button>
       </div>
       <div>
         <form onSubmit={handleRestore}>
-        <input
-          className="border-solid rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
-          type="number"
-          name="number"
-          id="1"
-          placeholder="quantity"
-          required
-        />
-        <br />
-        <input
-          className="btn btn-active mb-2 w-[300px] bg-[purple]"
-          type="submit"
-          value="restore"
-        />
+          <input
+            className="border-solid rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
+            type="number"
+            name="number"
+            id="1"
+            placeholder="quantity"
+            required
+          />
+          <br />
+          <input
+            className="btn btn-active mb-2 w-[300px] bg-[purple]"
+            type="submit"
+            value="restore"
+          />
         </form>
       </div>
       <Link to="/manage">manage</Link>

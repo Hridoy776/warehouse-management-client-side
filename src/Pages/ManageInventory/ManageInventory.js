@@ -1,11 +1,57 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import useItems from "../../Hooks/useItems";
+import AllItem from "../AllItem/AllItem";
 
 const ManageInventory = () => {
-    return (
-        <div>
-            <p>manage inventory</p>
-        </div>
-    );
+  const [items, setItems] = useItems("http://localhost:5000/items");
+    const navigate=useNavigate()
+  const handleDeleteItem = (id) => {
+    const url = `http://localhost:5000/item/${id}`;
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const remaining = items.filter((item) => item._id !== id);
+        setItems(remaining);
+      });
+  };
+
+  const handleNavigate=()=>{
+      navigate('/additem')
+  }
+  return (
+    <div className="container mx-auto ">
+      <p>manage inventory</p>
+      <table data-theme="dark" className="rounded my-3 table table-compact   mx-auto">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>price</th>
+            <th>quantity</th>
+            <th>delete</th>
+          </tr>
+        </thead>
+        {items.map((item) => (
+          <AllItem
+            key={item._id}
+            handleDeleteItem={handleDeleteItem}
+            item={item}
+          ></AllItem>
+        ))}
+      </table>
+
+      <button onClick={handleNavigate} className="btn btn-active mb-2 w-[300px] bg-[purple]">
+        add new item
+      </button>
+    </div>
+  );
 };
 
 export default ManageInventory;

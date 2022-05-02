@@ -9,9 +9,11 @@ const SocialSignIn = () => {
     const navigate=useNavigate()
     const location=useLocation()
       let from = location.state?.from?.pathname || "/";
-      if(user){
-        navigate(from, { replace: true });
-      }
+      useEffect(()=>{
+        if(user){
+          navigate(from, { replace: true });
+        }
+      },[user,from,navigate])
     const handleGoogleSingIn=()=>{
         signInWithGoogle()
     }
