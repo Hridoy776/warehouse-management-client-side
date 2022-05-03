@@ -90,7 +90,7 @@ const Login = () => {
           reset password
         </span>
       </p>
-      <div className="divider w-1/3 mx-auto">OR</div>
+      <div className="divider text-[purple]  w-1/3 mx-auto">OR</div>
       <SocialSignIn></SocialSignIn>
       <ToastContainer/>
     </div>

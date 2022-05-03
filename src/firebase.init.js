@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBvYRlDWTsEiwK0RatsvEdX-EJZxRKUyK0",
-  authDomain: "pristine-perfumes.firebaseapp.com",
-  projectId: "pristine-perfumes",
-  storageBucket: "pristine-perfumes.appspot.com",
-  messagingSenderId: "492500093114",
-  appId: "1:492500093114:web:7afc43c87c21fe69169a83"
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
