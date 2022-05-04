@@ -11,8 +11,9 @@ const AddItem = () => {
     const quantity = e.target.quantity.value;
     const supplier = e.target.supplier.value;
     const img = e.target.img.value;
+    const email=user.email
 
-    const newItem = { name, price, quantity, supplier, img };
+    const newItem = { name, price, quantity, supplier, img,email };
     console.log(newItem);
     const url = `http://localhost:5000/add?email=${user?.email}`;
     fetch(url, {
@@ -34,6 +35,17 @@ const AddItem = () => {
         className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mb-10"
       >
         <div className="card-body">
+          <div className="form-control mt-3">
+            <input
+              className="input input-bordered"
+              type="text"
+              name="email"
+              id="0"
+              value={user.email}
+              readOnly
+              required
+            />
+          </div>
           <div className="form-control mt-3">
             <input
               className="input input-bordered"

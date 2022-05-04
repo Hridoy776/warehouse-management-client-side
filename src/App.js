@@ -14,7 +14,7 @@ import MyItem from "./Pages/MyItem/MyItem";
 
 function App() {
   return (
-    <div>
+    <div className="bg-[#DDB9D3]">
       <Header></Header>
       <Routes>
         <Route path="/" element={<Home></Home>}/>

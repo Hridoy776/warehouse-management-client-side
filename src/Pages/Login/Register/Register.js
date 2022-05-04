@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
@@ -9,11 +9,10 @@ const Register = () => {
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
   const navigate = useNavigate();
-  if (loading) {
-  }
-  if (user) {
+  
+  useEffect(()=>{if (user) {
     navigate("/home");
-  }
+  }},[user,navigate])
   let errorElement;
   if (error) {
     errorElement = <p>{error.message}</p>;
@@ -26,7 +25,7 @@ const Register = () => {
     e.target.reset();
   };
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center h-screen items-center">
       <p className="text-6xl my-10 font-500 text-[purple]">register</p>
       <form
         onSubmit={handleSingUp}
@@ -38,6 +37,7 @@ const Register = () => {
               type="text"
               placeholder="email"
               className="input input-bordered"
+              name="email"
             />
           </div>
           <div className="form-control my-3">
@@ -45,6 +45,7 @@ const Register = () => {
               type="password"
               placeholder="password"
               className="input input-bordered"
+              name="password"
             />
             {errorElement}
 
@@ -55,7 +56,7 @@ const Register = () => {
             </label>
           </div>
           <div className="form-control mt-2">
-            <button className="btn bg-[purple]">Login</button>
+            <button className="btn bg-[purple]">signup</button>
           </div>
           <div className="divider text-[purple]  w-full mx-auto">OR</div>
           <SocialSignIn></SocialSignIn>

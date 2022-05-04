@@ -8,7 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import SocialSignIn from "./SocialSignIn/SocialSignIn";
 import { toast, ToastContainer } from "react-toastify";
-import { SpinnerCircular } from 'spinners-react';
+import { SpinnerCircular } from "spinners-react";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -27,10 +27,12 @@ const Login = () => {
   if (error) {
     errorElement = <p>{error.message}</p>;
   }
-  if(loading){
-    <div className="h-screen  flex items-center">
-      hello ....
-    </div>
+  if (loading) {
+    return (
+      <div className="h-screen flex justify-center">
+        <SpinnerCircular></SpinnerCircular>
+      </div>
+    );
   }
 
   const handleSingIn = (e) => {
@@ -53,13 +55,14 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <p>login</p>
+    <div className="h-screen">
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="text-xl font-medium my-5">you can login with registration or sign in with google</p>
+            <p className="text-xl font-medium my-5">
+              you can login with registration or sign in with google
+            </p>
           </div>
           <form
             onSubmit={handleSingIn}
@@ -67,7 +70,6 @@ const Login = () => {
           >
             <div className="card-body">
               <div className="form-control mt-3">
-                
                 <input
                   ref={emailRef}
                   type="text"
@@ -76,7 +78,6 @@ const Login = () => {
                 />
               </div>
               <div className="form-control my-3">
-                
                 <input
                   ref={passwordRef}
                   type="password"
@@ -94,11 +95,9 @@ const Login = () => {
                       reset password
                     </span>
                   </p>
-
-                  
                 </label>
                 <label className="label">
-                <p>
+                  <p>
                     new to pristine?{" "}
                     <Link className="text-[purple]" to="/register">
                       please register
@@ -116,8 +115,6 @@ const Login = () => {
         </div>
       </div>
 
-      
-      
       <ToastContainer />
     </div>
   );

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const MyItem = () => {
+  const [user]=useAuthState(auth)
   const [items, setItems] = useState([]);
   useEffect(() => {
-    const url = "http://localhost:5000/user/items";
+    const email=user?.email
+    
+    const url = `http://localhost:5000/user/items?email=${email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItems(data));
-  }, []);
+  }, [user]);
 
   const handleDeleteItem = (id) => {
     const url = `http://localhost:5000/user/items/${id}`;
