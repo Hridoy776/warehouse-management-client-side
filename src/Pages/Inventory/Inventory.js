@@ -1,7 +1,5 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
 
 const Inventory = () => {
   const { id } = useParams();
@@ -31,9 +29,9 @@ const Inventory = () => {
           console.log(data);
         });
       const { quantity, ...rest } = item;
-      const updateItem=rest;
-      updateItem["quantity"]=newQuantity.quantity;
-      setItem(updateItem)
+      const updateItem = rest;
+      updateItem["quantity"] = newQuantity.quantity;
+      setItem(updateItem);
     }
   };
 
@@ -58,39 +56,43 @@ const Inventory = () => {
       e.target.reset();
 
       const { quantity, ...rest } = item;
-      const updateItem=rest;
-      updateItem["quantity"]=newQuantity.quantity;
-      setItem(updateItem)
+      const updateItem = rest;
+      updateItem["quantity"] = newQuantity.quantity;
+      setItem(updateItem);
     }
   };
 
   return (
-    <div>
-      <div>
-        <h3>{item.price}</h3>
-        <p>quantity:{item.quantity}</p>
-        <button onClick={delevary} className="btn btn-primary">
-          delevered
-        </button>
+    <div className="flex flex-col items-center h-screen justify-center">
+      <div class="card lg:card-side bg-base-100 shadow-xl">
+        <figure className="p-5">
+          <img className="rounded-lg" src={item.img} alt="Album" />
+        </figure>
+        <div class="card-body">
+          <p className="text-4xl">{item.name}</p>
+          <p className="text-2xl">quantity:{item.quantity}</p>
+          <button onClick={delevary} className="btn bg-[purple] hover:bg-[white] hover:text-[purple] w-[300px]">
+            delevered
+          </button>
+          <form onSubmit={handleRestore}>
+            <input
+              className="border-solid  rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
+              type="number"
+              name="number"
+              id="1"
+              placeholder="quantity"
+              required
+            />
+            <br />
+            <input
+              className="btn btn-active mb-2 w-[300px] hover:bg-[white] hover:text-[purple] bg-[purple]"
+              type="submit"
+              value="restore"
+            />
+          </form>
+        </div>
       </div>
-      <div>
-        <form onSubmit={handleRestore}>
-          <input
-            className="border-solid rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
-            type="number"
-            name="number"
-            id="1"
-            placeholder="quantity"
-            required
-          />
-          <br />
-          <input
-            className="btn btn-active mb-2 w-[300px] bg-[purple]"
-            type="submit"
-            value="restore"
-          />
-        </form>
-      </div>
+
       <Link to="/manage">manage</Link>
     </div>
   );

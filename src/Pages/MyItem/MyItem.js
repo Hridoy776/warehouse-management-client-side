@@ -27,7 +27,7 @@ const MyItem = () => {
   };
   return (
     <div>
-      my item
+      <p className="  text-4xl my-10 font-500 text-[purple] text-center">MY ITEMS</p>
       <div className="container mx-auto">
         <table className="rounded my-3 table table-compact   mx-auto">
           <thead>

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,8 +6,8 @@ import SocialSignIn from "../SocialSignIn/SocialSignIn";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth,{sendEmailVerification: true});
-    
+    useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
   const navigate = useNavigate();
   if (loading) {
   }
@@ -16,10 +15,10 @@ const Register = () => {
     navigate("/home");
   }
   let errorElement;
-  if(error){
-    errorElement=<p>{error.message}</p>
+  if (error) {
+    errorElement = <p>{error.message}</p>;
   }
-  const handleSingUp = async(e) => {
+  const handleSingUp = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -27,38 +26,44 @@ const Register = () => {
     e.target.reset();
   };
   return (
-    <div>
-      <p>register</p>
-      <form onSubmit={handleSingUp}>
-        <input
-          className="border-solid rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
-          type="email"
-          name="email"
-          id="1"
-          placeholder="email"
-        />
-        <br />
+    <div className="flex flex-col justify-center items-center">
+      <p className="text-6xl my-10 font-500 text-[purple]">register</p>
+      <form
+        onSubmit={handleSingUp}
+        className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mb-10"
+      >
+        <div className="card-body">
+          <div className="form-control mt-3">
+            <input
+              type="text"
+              placeholder="email"
+              className="input input-bordered"
+            />
+          </div>
+          <div className="form-control my-3">
+            <input
+              type="password"
+              placeholder="password"
+              className="input input-bordered"
+            />
+            {errorElement}
 
-        <input
-          className="border-solid rounded-md py-1 w-[300px] mb-5 px-2 border-2 border-gray-600"
-          type="password"
-          name="password"
-          id="2"
-          placeholder="password"
-        />
-        <br />
-        {errorElement}
-        <input
-          className="btn btn-active mb-2 w-[300px] bg-[purple]"
-          type="submit"
-          value="signUp"
-        />
+            <label className="label">
+              <p>
+                have a account? <Link to="/login">please login</Link>
+              </p>
+            </label>
+          </div>
+          <div className="form-control mt-2">
+            <button className="btn bg-[purple]">Login</button>
+          </div>
+          <div className="divider text-[purple]  w-full mx-auto">OR</div>
+          <SocialSignIn></SocialSignIn>
+        </div>
       </form>
-      <p>
-        have a account? <Link to="/login">please login</Link>
-      </p>
-      <div className="divider">OR</div>
-      <SocialSignIn></SocialSignIn>
+
+      
+      
     </div>
   );
 };

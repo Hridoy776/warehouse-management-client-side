@@ -1,7 +1,7 @@
 import React from "react";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
     signOut(auth);
   };
   return (
-    <div className="   navbar bg-neutral text-neutral-content">
+    <div className="  navbar bg-[#4c064c] text-neutral-content">
       <div className="container mx-auto ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -36,56 +36,56 @@ const Header = () => {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-zinc-900 rounded-box w-52"
             >
               <li>
-                <Link to="/home">Home</Link>
+                <NavLink  to="/home">Home</NavLink>
               </li>
 
               <li>
-              <Link to="/blog">blog</Link>
+              <NavLink to="/blog">blog</NavLink>
             </li>
-            <li>
+            
               {user && (
                 <>
-                  <Link to="/additem">add item</Link>
-                  <Link to="/manage">manage item</Link>
-                  <Link to="/myitem">my item</Link>
+                  <NavLink to="/additem">add item</NavLink>
+                  <NavLink to="/manage">manage item</NavLink>
+                  <NavLink to="/myitem">my item</NavLink>
                 </>
               )}
-            </li>
+            
             <li>
               {user ? (
                 <button onClick={handleSingOut}>signout</button>
               ) : (
-                <Link to="/login">Login</Link>
+                <NavLink to="/login">Login</NavLink>
               )}
             </li>
             </ul>
           </div>
-          <Link to="/" className="  btn btn-ghost normal-case text-xl">
+          <NavLink to="/" className="  btn btn-ghost normal-case text-xl">
             daisyUI
-          </Link>
+          </NavLink>
         </div>
         <div className="navbar-end hidden lg:flex ">
           <ul className="menu menu-horizontal   px-20">
             <li>
-              <Link to="/home">home</Link>
+              <NavLink to="/home">home</NavLink>
             </li>
             <li>
-              <Link to="/blog">blog</Link>
+              <NavLink to="/blog">blog</NavLink>
             </li>
-            <li>
+            
               {user && (
-                <>
-                  <Link to="/additem">add item</Link>
-                  <Link to="/manage">manage item</Link>
-                  <Link to="/myitem">my item</Link>
-                </>
+                <li>
+                  <NavLink to="/additem">add item</NavLink>
+                  <NavLink to="/manage">manage item</NavLink>
+                  <NavLink to="/myitem">my item</NavLink>
+                </li>
               )}
-            </li>
+            
             <li>
               {user ? (
                 <button onClick={handleSingOut}>signout</button>
               ) : (
-                <Link to="/login">Login</Link>
+                <NavLink to="/login">Login</NavLink>
               )}
             </li>
           </ul>

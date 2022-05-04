@@ -28,7 +28,7 @@ const ManageInventory = () => {
   }
   return (
     <div className="container mx-auto ">
-      <p>manage inventory</p>
+      <p className="  text-4xl my-10 font-500 text-[purple] text-center">MANAGE INVENTORY</p>
       <table data-theme="dark" className="rounded my-3 table table-compact   mx-auto">
         <thead>
           <tr>
@@ -47,9 +47,11 @@ const ManageInventory = () => {
         ))}
       </table>
 
-      <button onClick={handleNavigate} className="btn btn-active mb-2 w-[300px] bg-[purple]">
+      <p className="text-center">
+      <button onClick={handleNavigate} className="btn btn-active mb-2 w-[300px] bg-[purple]  ">
         add new item
       </button>
+      </p>
     </div>
   );
 };

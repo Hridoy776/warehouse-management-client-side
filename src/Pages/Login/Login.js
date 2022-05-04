@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import auth from "../../firebase.init";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   useSendPasswordResetEmail,
@@ -8,6 +8,7 @@ import {
 } from "react-firebase-hooks/auth";
 import SocialSignIn from "./SocialSignIn/SocialSignIn";
 import { toast, ToastContainer } from "react-toastify";
+import { SpinnerCircular } from 'spinners-react';
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -26,6 +27,11 @@ const Login = () => {
   if (error) {
     errorElement = <p>{error.message}</p>;
   }
+  if(loading){
+    <div className="h-screen  flex items-center">
+      hello ....
+    </div>
+  }
 
   const handleSingIn = (e) => {
     e.preventDefault();
@@ -37,7 +43,7 @@ const Login = () => {
 
   const handleResetPassword = async () => {
     const email = await emailRef.current.value;
-    
+
     if (email) {
       await sendPasswordResetEmail(email);
       toast("Sent email");
@@ -49,50 +55,70 @@ const Login = () => {
   return (
     <div>
       <p>login</p>
-      <form
-        className="w-[360px] bg-[#e45ee4] py-4 mx-auto rounded-xl"
-        onSubmit={handleSingIn}
-      >
-        <input
-          className="border-solid rounded-md w-[300px] my-5 px-2 border-2 border-gray-600 py-1"
-          type="email"
-          name="email"
-          id="1"
-          ref={emailRef}
-          placeholder="email"
-        />
-        <br />
-        {errorElement}
-        <input
-          className="border-solid rounded-md py-1 w-[300px] mb-5 px-2 border-2 border-gray-600"
-          type="password"
-          name="password"
-          id="2"
-          ref={passwordRef}
-          placeholder="password"
-        />
-        <br />
-        <input
-          className="btn btn-active mb-2 w-[300px] bg-[purple]"
-          type="submit"
-          value="login"
-        />
-      </form>
-      <p>
-        new to pristine?{" "}
-        <Link className="text-[purple]" to="/register">
-          please register
-        </Link>
-      </p>
-      <p>
-        Forget password?{" "}
-        <span onClick={handleResetPassword} className="text-[purple]">
-          reset password
-        </span>
-      </p>
-      <div className="divider text-[purple]  w-1/3 mx-auto">OR</div>
-      <SocialSignIn></SocialSignIn>
-      <ToastContainer/>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="text-center lg:text-left">
+            <h1 className="text-5xl font-bold">Login now!</h1>
+            <p className="text-xl font-medium my-5">you can login with registration or sign in with google</p>
+          </div>
+          <form
+            onSubmit={handleSingIn}
+            className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+          >
+            <div className="card-body">
+              <div className="form-control mt-3">
+                
+                <input
+                  ref={emailRef}
+                  type="text"
+                  placeholder="email"
+                  className="input input-bordered"
+                />
+              </div>
+              <div className="form-control my-3">
+                
+                <input
+                  ref={passwordRef}
+                  type="password"
+                  placeholder="password"
+                  className="input input-bordered"
+                />
+                {errorElement}
+                <label className="label">
+                  <p>
+                    Forgot password?{" "}
+                    <span
+                      onClick={handleResetPassword}
+                      className="text-[purple]"
+                    >
+                      reset password
+                    </span>
+                  </p>
+
+                  
+                </label>
+                <label className="label">
+                <p>
+                    new to pristine?{" "}
+                    <Link className="text-[purple]" to="/register">
+                      please register
+                    </Link>
+                  </p>
+                </label>
+              </div>
+              <div className="form-control mt-2">
+                <button className="btn bg-[purple]">Login</button>
+              </div>
+              <div className="divider text-[purple]  w-full mx-auto">OR</div>
+              <SocialSignIn></SocialSignIn>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      
+      
+      <ToastContainer />
     </div>
   );
 };
