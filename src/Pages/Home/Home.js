@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useItems from "../../Hooks/useItems";
@@ -16,18 +17,18 @@ const Home = () => {
     navigate("/manage");
   };
   return (
-    <div className="   min-h-screen ">
-      <h1 className="text-4xl font-medium  mt-[100px]  text-center">
+    <div className="   min-h-screen  ">
+      {/* <h1 className="text-4xl font-medium  mt-[100px]  text-center">
         WELLCOME TO{" "}
         <span className="text-[purple] italic">PRISTINE PERFUMES</span>
-      </h1>
+      </h1> */}
       <section>
         <Banner></Banner>
       </section>
       <section>
         <div
-          className="xl:container my-10 mx-auto grid lg:grid-cols-3 
-            md:grid-cols-3  gap-8 p-5 justify-center items-center bg-[#DDB9D3] min-h-screen"
+          className=" lg:w-[90%] my-10 mx-auto grid lg:grid-cols-3 
+            md:grid-cols-3  gap-8 p-5 justify-center items-center  min-h-screen"
         >
           {items.map((item) => (
             <Item key={item._id} item={item}></Item>
@@ -38,9 +39,9 @@ const Home = () => {
         <button
           onClick={handleNavigate}
           className=" text-center  w-fit"
-          to="/manage"
+          
         >
-          manage
+          manage <ArrowRightIcon className="h-5 inline w-5"/>
         </button>
       </p>
       <section>

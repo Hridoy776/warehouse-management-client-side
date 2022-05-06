@@ -10,19 +10,22 @@ const ManageInventory = () => {
   const navigate = useNavigate();
   const handleDeleteItem = (id) => {
     const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
-    fetch(url, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const remaining = items.filter((item) => item._id !== id);
-        setItems(remaining);
-      });
+    const proceed=window.confirm("are you sure to delete?")
+    if(proceed){
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const remaining = items.filter((item) => item._id !== id);
+          setItems(remaining);
+        });
+    }
   };
 
   const handleNavigate = () => {
@@ -33,7 +36,7 @@ const ManageInventory = () => {
       <p className="  text-4xl my-10 font-500 text-[purple] text-center">
         MANAGE INVENTORY
       </p>
-      <table className="rounded my-3 table table-compact   mx-auto">
+      <table className="rounded my-3 table    mx-auto">
         <thead>
           <tr>
             <th>Name</th>

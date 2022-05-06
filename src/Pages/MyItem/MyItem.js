@@ -1,19 +1,36 @@
+import { async } from "@firebase/util";
+import { TrashIcon } from "@heroicons/react/solid";
+import axios from "axios";
+import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import {  useNavigate } from "react-router-dom";
+import axiosSecret from "../../api/axiosSecret";
 import auth from "../../firebase.init";
 
 const MyItem = () => {
   const [user] = useAuthState(auth);
   const [items, setItems] = useState([]);
+  const navigate=useNavigate()
   useEffect(() => {
-    const email = user?.email;
+    const getMyItem = async () => {
+      const email = user?.email;
 
-    const url = `https://lit-oasis-49315.herokuapp.com/user/items?email=${email}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setItems(data));
-  }, [user]);
-
+      const url = `https://lit-oasis-49315.herokuapp.com/user/items?email=${email}`;
+     try {
+      const { data } = await axiosSecret.get(url);
+      setItems(data);
+     } catch (error) {
+       console.log(error.message)
+       if(error.response.status===403 || error.response.status === 401){
+         signOut(auth)
+         navigate('/login')
+       }
+     }
+    };
+    getMyItem();
+  }, [user,navigate]);
+  console.log(items);
   const handleDeleteItem = (id) => {
     const url = `https://lit-oasis-49315.herokuapp.com/user/items/${id}`;
     fetch(url, {
@@ -31,7 +48,7 @@ const MyItem = () => {
       });
   };
   return (
-    <div className="mt-[100px]">
+    <div className="mt-[100px] h-screen">
       <p className="  text-4xl my-10 font-500 text-[purple] text-center">
         MY ITEMS
       </p>
@@ -56,7 +73,7 @@ const MyItem = () => {
                     onClick={() => handleDeleteItem(item._id)}
                     className="btn btn-circle bg-[purple]"
                   >
-                    x
+                    <TrashIcon className="text-white  h-5 w-5" />
                   </button>
                 </td>
               </tr>

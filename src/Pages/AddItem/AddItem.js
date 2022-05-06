@@ -25,7 +25,9 @@ const AddItem = () => {
       body: JSON.stringify(newItem),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        window.alert("item added")
+      });
   };
   return (
     <div className="flex flex-col justify-center items-center mt-[100px]">
