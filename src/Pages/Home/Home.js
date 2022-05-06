@@ -1,6 +1,9 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
+import { SpinnerCircular } from "spinners-react";
+import auth from "../../firebase.init";
 import useItems from "../../Hooks/useItems";
 import Banner from "./Banner/Banner";
 import Item from "./Item.js/Item";
@@ -8,6 +11,7 @@ import Services from "./Services/Services";
 import Slider from "./Slider/Slider";
 
 const Home = () => {
+  const [,loading,]=useAuthState(auth)
   const [items] = useItems("https://lit-oasis-49315.herokuapp.com/items");
   if (items.length) {
     items.length = 6;
@@ -16,6 +20,12 @@ const Home = () => {
   const handleNavigate = () => {
     navigate("/manage");
   };
+  if(loading){
+    return (
+      <div className="h-screen flex justify-center">
+        <SpinnerCircular></SpinnerCircular>
+      </div>)
+  }
   return (
     <div className="   min-h-screen  ">
       {/* <h1 className="text-4xl font-medium  mt-[100px]  text-center">
