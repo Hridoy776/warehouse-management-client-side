@@ -7,7 +7,7 @@ import Services from "./Services/Services";
 import Slider from "./Slider/Slider";
 
 const Home = () => {
-  const [items] = useItems("http://localhost:5000/items");
+  const [items] = useItems("https://lit-oasis-49315.herokuapp.com/items");
   if (items.length) {
     items.length = 6;
   }
@@ -21,11 +21,11 @@ const Home = () => {
         WELLCOME TO{" "}
         <span className="text-[purple] italic">PRISTINE PERFUMES</span>
       </h1>
-      <section  >
+      <section>
         <Banner></Banner>
       </section>
-      <section >
-        <div 
+      <section>
+        <div
           className="xl:container my-10 mx-auto grid lg:grid-cols-3 
             md:grid-cols-3  gap-8 p-5 justify-center items-center bg-[#DDB9D3] min-h-screen"
         >
@@ -45,12 +45,12 @@ const Home = () => {
       </p>
       <section>
         <div className="m-10">
-        <Slider></Slider>
+          <Slider></Slider>
         </div>
       </section>
       <section>
         <div className="container lg:px-[100px] px-0 lg:grid justify-center items-center grid-cols-3 bg-[purple] p-5">
-            <Services></Services>
+          <Services></Services>
         </div>
       </section>
     </div>

@@ -3,19 +3,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const MyItem = () => {
-  const [user]=useAuthState(auth)
+  const [user] = useAuthState(auth);
   const [items, setItems] = useState([]);
   useEffect(() => {
-    const email=user?.email
-    
-    const url = `http://localhost:5000/user/items?email=${email}`;
+    const email = user?.email;
+
+    const url = `https://lit-oasis-49315.herokuapp.com/user/items?email=${email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItems(data));
   }, [user]);
 
   const handleDeleteItem = (id) => {
-    const url = `http://localhost:5000/user/items/${id}`;
+    const url = `https://lit-oasis-49315.herokuapp.com/user/items/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -32,7 +32,9 @@ const MyItem = () => {
   };
   return (
     <div className="mt-[100px]">
-      <p className="  text-4xl my-10 font-500 text-[purple] text-center">MY ITEMS</p>
+      <p className="  text-4xl my-10 font-500 text-[purple] text-center">
+        MY ITEMS
+      </p>
       <div className="container mx-auto">
         <table className="rounded my-3 table table-compact   mx-auto">
           <thead>
@@ -50,7 +52,12 @@ const MyItem = () => {
                 <td>{item.quantity}</td>
                 <td>{item.price}</td>
                 <td>
-                  <button onClick={()=>handleDeleteItem(item._id)} className="btn btn-circle bg-[purple]">x</button>
+                  <button
+                    onClick={() => handleDeleteItem(item._id)}
+                    className="btn btn-circle bg-[purple]"
+                  >
+                    x
+                  </button>
                 </td>
               </tr>
             ))}

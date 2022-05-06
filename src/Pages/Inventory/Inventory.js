@@ -5,14 +5,14 @@ const Inventory = () => {
   const { id } = useParams();
   const [item, setItem] = useState({});
   useEffect(() => {
-    const url = `http://localhost:5000/item/${id}`;
+    const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setItem(data));
   }, [id]);
 
   const delevary = () => {
-    const url = `http://localhost:5000/item/${id}`;
+    const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
     if (item.quantity > 0) {
       const newQuantity = {
         quantity: item.quantity - 1,
@@ -39,7 +39,7 @@ const Inventory = () => {
     e.preventDefault();
     const inputquantity = e.target.number.value;
 
-    const url = `http://localhost:5000/item/${id}`;
+    const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
     if (item.quantity) {
       const newQuantity = {
         quantity: parseInt(item.quantity) + parseInt(inputquantity),
@@ -71,7 +71,10 @@ const Inventory = () => {
         <div class="card-body">
           <p className="text-4xl">{item.name}</p>
           <p className="text-2xl">quantity:{item.quantity}</p>
-          <button onClick={delevary} className="btn bg-[purple] hover:bg-[white] hover:text-[purple] w-[300px]">
+          <button
+            onClick={delevary}
+            className="btn bg-[purple] hover:bg-[white] hover:text-[purple] w-[300px]"
+          >
             delevered
           </button>
           <form onSubmit={handleRestore}>

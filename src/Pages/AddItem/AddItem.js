@@ -11,11 +11,11 @@ const AddItem = () => {
     const quantity = e.target.quantity.value;
     const supplier = e.target.supplier.value;
     const img = e.target.img.value;
-    const email=user.email
+    const email = user.email;
 
-    const newItem = { name, price, quantity, supplier, img,email };
+    const newItem = { name, price, quantity, supplier, img, email };
     console.log(newItem);
-    const url = `http://localhost:5000/add?email=${user?.email}`;
+    const url = `https://lit-oasis-49315.herokuapp.com/add?email=${user?.email}`;
     fetch(url, {
       method: "POST",
       headers: {

@@ -4,10 +4,12 @@ import useItems from "../../Hooks/useItems";
 import AllItem from "../AllItem/AllItem";
 
 const ManageInventory = () => {
-  const [items, setItems] = useItems("http://localhost:5000/items");
-    const navigate=useNavigate()
+  const [items, setItems] = useItems(
+    "https://lit-oasis-49315.herokuapp.com/items"
+  );
+  const navigate = useNavigate();
   const handleDeleteItem = (id) => {
-    const url = `http://localhost:5000/item/${id}`;
+    const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -23,13 +25,15 @@ const ManageInventory = () => {
       });
   };
 
-  const handleNavigate=()=>{
-      navigate('/additem')
-  }
+  const handleNavigate = () => {
+    navigate("/additem");
+  };
   return (
     <div className="container mx-auto h-screen mt-[100px] ">
-      <p className="  text-4xl my-10 font-500 text-[purple] text-center">MANAGE INVENTORY</p>
-      <table  className="rounded my-3 table table-compact   mx-auto">
+      <p className="  text-4xl my-10 font-500 text-[purple] text-center">
+        MANAGE INVENTORY
+      </p>
+      <table className="rounded my-3 table table-compact   mx-auto">
         <thead>
           <tr>
             <th>Name</th>
@@ -48,9 +52,12 @@ const ManageInventory = () => {
       </table>
 
       <p className="text-center">
-      <button onClick={handleNavigate} className="btn btn-active mb-2 w-[300px] bg-[purple]  ">
-        add new item
-      </button>
+        <button
+          onClick={handleNavigate}
+          className="btn btn-active mb-2 w-[300px] bg-[purple]  "
+        >
+          add new item
+        </button>
       </p>
     </div>
   );
