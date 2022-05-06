@@ -5,6 +5,7 @@ import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import {  useNavigate } from "react-router-dom";
+import axiosSecret from "../../api/axiosSecret";
 
 import auth from "../../firebase.init";
 
@@ -18,11 +19,7 @@ const MyItem = () => {
 
       const url = `https://lit-oasis-49315.herokuapp.com/user/items?email=${email}`;
      try {
-      const { data } = await axios.get(url,{
-        headers:{
-          authorization:`Bearer ${localStorage.getItem('access_token')}`
-        }
-      });
+      const { data } = await axiosSecret.get(url);
       setItems(data);
      } catch (error) {
        console.log(error.message)
