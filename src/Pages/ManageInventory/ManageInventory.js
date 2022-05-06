@@ -27,9 +27,9 @@ const ManageInventory = () => {
       navigate('/additem')
   }
   return (
-    <div className="container mx-auto h-screen ">
+    <div className="container mx-auto h-screen mt-[100px] ">
       <p className="  text-4xl my-10 font-500 text-[purple] text-center">MANAGE INVENTORY</p>
-      <table data-theme="dark" className="rounded my-3 table table-compact   mx-auto">
+      <table  className="rounded my-3 table table-compact   mx-auto">
         <thead>
           <tr>
             <th>Name</th>

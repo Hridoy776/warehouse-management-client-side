@@ -28,7 +28,7 @@ const AddItem = () => {
       .then((data) => console.log(data));
   };
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mt-[100px]">
       <p className="text-6xl my-10 font-500 text-[purple]">ADD ITEM</p>
       <form
         onSubmit={handlAddItem}

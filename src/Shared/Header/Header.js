@@ -1,97 +1,83 @@
-import React from "react";
+import React, { useState }  from "react";
 import { signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../firebase.init";
-
+import { MenuIcon, } from '@heroicons/react/solid'
 const Header = () => {
   const [user] = useAuthState(auth);
+  const [navbarOpen, setNavbarOpen]=useState(false)
 
   const handleSingOut = () => {
     signOut(auth);
   };
   return (
-    <div className="  navbar bg-[#4c064c] text-neutral-content">
-      <div className="container mx-auto ">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex="0" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex="0"
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-zinc-900 rounded-box w-52"
+    <nav className="fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-white text-black mb-3">
+        <div className="container lg:px-32 px-4 mx-auto flex flex-wrap items-center justify-between">
+          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+            <Link
+              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase "
+              to="/"
             >
-              <li>
-                <NavLink  to="/home">Home</NavLink>
-              </li>
-
-              <li>
-              <NavLink to="/blog">blog</NavLink>
-            </li>
-            
-              {user && (
-                <>
-                  <NavLink to="/additem">add item</NavLink>
-                  <NavLink to="/manage">manage item</NavLink>
-                  <NavLink to="/myitem">my item</NavLink>
-                </>
-              )}
-            
-            <li>
-              {user ? (
-                <button onClick={handleSingOut}>signout</button>
-              ) : (
-                <NavLink to="/login">Login</NavLink>
-              )}
-            </li>
-            </ul>
+              pristine perfumes
+            </Link>
+            <button
+              className=" cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              type="button"
+              onClick={() => setNavbarOpen(!navbarOpen)}
+            >
+               <MenuIcon className="h-5 w-5 text-black"/> 
+            </button>
           </div>
-          <NavLink to="/" className="  btn btn-ghost normal-case text-xl">
-            daisyUI
-          </NavLink>
-        </div>
-        <div className="navbar-end hidden lg:flex ">
-          <ul className="menu menu-horizontal   px-20">
-            <li>
-              <NavLink to="/home">home</NavLink>
+          <div
+            className={
+              "lg:flex flex-grow items-center" +
+              (navbarOpen ? " flex" : " hidden")
+            }
+            id="example-navbar-danger"
+          >
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              
+              <li>
+              <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/home">home</NavLink>
             </li>
             <li>
-              <NavLink to="/blog">blog</NavLink>
+              <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/blog">blog</NavLink>
             </li>
             
               {user && (
                 <li>
-                  <NavLink to="/additem">add item</NavLink>
-                  <NavLink to="/manage">manage item</NavLink>
-                  <NavLink to="/myitem">my item</NavLink>
+                  <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/additem">add item</NavLink>
+                  
                 </li>
               )}
+              {user && (
+                <li>
+                  <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/manage">manage item</NavLink>
+                  
+                </li>
+              )}
+              {user && (
+                <li>
+                  <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/myitem">my item</NavLink>
+                  
+                </li>
+              )}
+              
+                  
             
             <li>
               {user ? (
-                <button onClick={handleSingOut}>signout</button>
+                <button className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" onClick={handleSingOut}>signout</button>
               ) : (
-                <NavLink to="/login">Login</NavLink>
+                <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/login">Login</NavLink>
               )}
             </li>
-          </ul>
+              
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
+      </nav>
   );
 };
 

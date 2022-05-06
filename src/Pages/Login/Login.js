@@ -63,6 +63,8 @@ const Login = () => {
             <p className="text-xl font-medium my-5">
               you can login with registration or sign in with google
             </p>
+            <div className="divider text-[purple]  w-full mx-auto">OR</div>
+            <SocialSignIn></SocialSignIn>
           </div>
           <form
             onSubmit={handleSingIn}
@@ -108,8 +110,6 @@ const Login = () => {
               <div className="form-control mt-2">
                 <button className="btn bg-[purple]">Login</button>
               </div>
-              <div className="divider text-[purple]  w-full mx-auto">OR</div>
-              <SocialSignIn></SocialSignIn>
             </div>
           </form>
         </div>
