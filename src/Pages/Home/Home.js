@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
-import React from "react";
+import React, { useEffect }  from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { SpinnerCircular } from "spinners-react";
@@ -9,6 +9,8 @@ import Banner from "./Banner/Banner";
 import Item from "./Item.js/Item";
 import Services from "./Services/Services";
 import Slider from "./Slider/Slider";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Home = () => {
   const [,loading,]=useAuthState(auth)
@@ -16,6 +18,9 @@ const Home = () => {
   if (items.length) {
     items.length = 6;
   }
+  useEffect(()=>{
+    AOS.init({duration:2000})
+   },[])
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/manage");
@@ -26,6 +31,7 @@ const Home = () => {
         <SpinnerCircular></SpinnerCircular>
       </div>)
   }
+  
   return (
     <div className="   min-h-screen  ">
       {/* <h1 className="text-4xl font-medium  mt-[100px]  text-center">
@@ -46,7 +52,7 @@ const Home = () => {
           ))}
         </div>
       </section>
-      <p className="text-center text-2xl font-medium my-2">
+      <p data-aos="slide-left" className="text-center text-2xl font-medium my-2">
         <button
           onClick={handleNavigate}
           className=" link link-secondary text-center  w-fit"
@@ -56,7 +62,7 @@ const Home = () => {
         </button>
       </p>
       <section>
-        <div className="m-10 ">
+        <div data-aos="slide-up" className="m-10 ">
           <Slider></Slider>
         </div>
       </section>

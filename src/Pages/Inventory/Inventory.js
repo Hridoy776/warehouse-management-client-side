@@ -1,6 +1,7 @@
 import { ArrowRightIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 const Inventory = () => {
   const { id } = useParams();
@@ -34,6 +35,9 @@ const Inventory = () => {
       const updateItem = rest;
       updateItem["quantity"] = newQuantity.quantity;
       setItem(updateItem);
+    }
+    else{
+      return toast("product sold out")
     }
   };
 
@@ -112,6 +116,7 @@ const Inventory = () => {
           manage inventory <ArrowRightIcon className="h-5 inline w-5"/>
         </button>
       </p>
+      <ToastContainer />
     </div>
   );
 };

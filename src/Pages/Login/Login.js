@@ -10,6 +10,7 @@ import SocialSignIn from "./SocialSignIn/SocialSignIn";
 import { toast, ToastContainer } from "react-toastify";
 import { SpinnerCircular } from "spinners-react";
 import axios from "axios";
+import { LoginIcon } from "@heroicons/react/solid";
 const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -110,7 +111,7 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="form-control mt-2">
-                  <button className="btn bg-[purple]">Login</button>
+                  <button className="btn bg-[purple]"><LoginIcon className="w-5 h-5"/>Login</button>
                 </div>
               </div>
             </form>

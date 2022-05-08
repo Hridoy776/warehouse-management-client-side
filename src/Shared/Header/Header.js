@@ -24,15 +24,16 @@ const Header = () => {
   };
   const navLinkStyles=({isActive})=>{
     return{
-      color:isActive ? '#bf25bf':'white'
+      color:isActive ? '#ea4bea':'#8E9299',
+      
     }
   }
   return (
-    <nav className={colorChange ? "fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-[#3D4451]  mb-3":"fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3   mb-3"}>
+    <nav className={colorChange ? "fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-[#3D4451] mb-3":"fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3    mb-3"}>
         <div className="container lg:px-32 px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="text-2xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-[#d708d7] uppercase "
+              className="text-2xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-[#b504b5] uppercase "
               to="/"
             >
               pristine perfumes
@@ -52,10 +53,10 @@ const Header = () => {
             }
             id="example-navbar-danger"
           >
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto ">
               
               <li>
-              <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/home">home</NavLink>
+              <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75  " to="/home">home</NavLink>
             </li>
             <li>
               <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/blog">blog</NavLink>
@@ -84,7 +85,7 @@ const Header = () => {
             
             <li>
               {user ? (
-                <button className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75" onClick={handleSingOut}>signout</button>
+                <button className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  btn-outline btn-secondary text-white hover:opacity-75" onClick={handleSingOut}>signout</button>
               ) : (
                 <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/login">Login</NavLink>
               )}
