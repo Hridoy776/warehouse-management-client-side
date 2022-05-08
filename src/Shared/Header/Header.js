@@ -7,21 +7,32 @@ import { MenuIcon, } from '@heroicons/react/solid'
 const Header = () => {
   const [user] = useAuthState(auth);
   const [navbarOpen, setNavbarOpen]=useState(false)
+  const [colorChange, setColorChange]=useState(false)
+ 
+ const changeColor=()=>{
+   if(window.scrollY >=100){
+     setColorChange(true)
+   }
+   else{
+     setColorChange(false)
+   }
+ }
+ window.addEventListener("scroll",changeColor)
 
   const handleSingOut = () => {
     signOut(auth);
   };
   const navLinkStyles=({isActive})=>{
     return{
-      color:isActive ? '#bf25bf':'black'
+      color:isActive ? '#bf25bf':'white'
     }
   }
   return (
-    <nav className="fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-white  mb-3">
+    <nav className={colorChange ? "fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-[#3D4451]  mb-3":"fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3   mb-3"}>
         <div className="container lg:px-32 px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="text-2xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase "
+              className="text-2xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-nowrap text-[#d708d7] uppercase "
               to="/"
             >
               pristine perfumes
@@ -31,7 +42,7 @@ const Header = () => {
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-               <MenuIcon className="h-5 w-5 text-black"/> 
+               <MenuIcon className="h-5 w-5 text-white"/> 
             </button>
           </div>
           <div
