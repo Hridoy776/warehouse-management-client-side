@@ -11,20 +11,23 @@ import { toast, ToastContainer } from "react-toastify";
 import { SpinnerCircular } from "spinners-react";
 import axios from "axios";
 import { LoginIcon } from "@heroicons/react/solid";
+import useToken from "../../Hooks/useToken";
 const Login = () => {
+  
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+  const [token]=useToken(user)
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const navigate = useNavigate();
   const location = useLocation();
   let from = location.state?.from?.pathname || "/";
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, from, navigate]);
+  }, [token, from, navigate]);
   let errorElement;
   if (error) {
     errorElement = <p>{error.message}</p>;
@@ -42,8 +45,7 @@ const Login = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password);
-    const { data } = await axios.post(`https://lit-oasis-49315.herokuapp.com/login`, { email });
-    localStorage.setItem('access_token',data);
+    
     e.target.reset();
   };
 

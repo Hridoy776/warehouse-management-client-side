@@ -43,7 +43,7 @@ const Header = () => {
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
-               <MenuIcon className="h-5 w-5 text-white"/> 
+               <MenuIcon className="h-5 w-5 text-[#b504b5]"/> 
             </button>
           </div>
           <div

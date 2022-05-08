@@ -52,7 +52,7 @@ const Home = () => {
           ))}
         </div>
       </section>
-      <p data-aos="slide-left" className="text-center text-2xl font-medium my-2">
+      <p data-aos="zoom-in" className="text-center text-2xl font-medium my-2">
         <button
           onClick={handleNavigate}
           className=" link link-secondary text-center  w-fit"

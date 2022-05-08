@@ -1,21 +1,31 @@
 import React, { useEffect } from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
+import { SpinnerCircular } from "spinners-react";
 import auth from "../../../firebase.init";
+import useToken from "../../../Hooks/useToken";
 import SocialSignIn from "../SocialSignIn/SocialSignIn";
 
 const Register = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [token]=useToken(user)
 
   const navigate = useNavigate();
   
-  useEffect(()=>{if (user) {
+  useEffect(()=>{if (token) {
     navigate("/home");
-  }},[user,navigate])
+  }},[token,navigate])
   let errorElement;
   if (error) {
     errorElement = <p>{error.message}</p>;
+  }
+  if(loading){
+    return (
+      <div className="h-screen flex justify-center">
+        <SpinnerCircular></SpinnerCircular>
+      </div>
+    );
   }
   const handleSingUp = async (e) => {
     e.preventDefault();
