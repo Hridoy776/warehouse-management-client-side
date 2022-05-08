@@ -25,7 +25,7 @@ const Header = () => {
   };
   const navLinkStyles=({isActive})=>{
     return{
-      color:isActive ? '#ea4bea':'#8E9299',
+      color:isActive ? '#ea4bea':'white',
       
     }
   }
