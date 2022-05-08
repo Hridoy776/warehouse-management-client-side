@@ -1,9 +1,11 @@
+import { ArrowRightIcon } from "@heroicons/react/solid";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Inventory = () => {
   const { id } = useParams();
   const [item, setItem] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
     fetch(url)
@@ -40,7 +42,7 @@ const Inventory = () => {
     const inputquantity = e.target.number.value;
 
     const url = `https://lit-oasis-49315.herokuapp.com/item/${id}`;
-    if (item.quantity) {
+    if (item.quantity>=0) {
       const newQuantity = {
         quantity: parseInt(item.quantity) + parseInt(inputquantity),
       };
@@ -61,16 +63,21 @@ const Inventory = () => {
       setItem(updateItem);
     }
   };
+  
+  const handleNavigate = () => {
+    navigate("/manage");
+  };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center">
+    <div className="flex flex-col items-center h-screen justify-center mt-[100px]">
       <div class="card lg:card-side bg-base-100 shadow-xl">
-        <figure className="p-5">
-          <img className="rounded-lg" src={item.img} alt="Album" />
+        <figure className="p-2">
+          <img className="rounded-lg " src={item.img} alt="Album" />
         </figure>
-        <div class="card-body">
-          <p className="text-4xl">{item.name}</p>
-          <p className="text-2xl">quantity:{item.quantity}</p>
+        <div class="card-body h-[400px] my-auto">
+          <p className="text-4xl ">{item.name}</p>
+          <p className="text-2xl">price:{item.price}</p>
+          <p className="text-2xl ">quantity:{item.quantity}</p>
           <button
             onClick={delevary}
             className="btn bg-[purple] hover:bg-[white] hover:text-[purple] w-[300px]"
@@ -96,7 +103,15 @@ const Inventory = () => {
         </div>
       </div>
 
-      <Link to="/manage">manage</Link>
+      <p className="text-center text-2xl font-medium my-10">
+        <button
+          onClick={handleNavigate}
+          className=" link link-secondary text-center  w-fit"
+          
+        >
+          manage inventory <ArrowRightIcon className="h-5 inline w-5"/>
+        </button>
+      </p>
     </div>
   );
 };

@@ -11,12 +11,17 @@ const Header = () => {
   const handleSingOut = () => {
     signOut(auth);
   };
+  const navLinkStyles=({isActive})=>{
+    return{
+      color:isActive ? '#bf25bf':'black'
+    }
+  }
   return (
-    <nav className="fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-white text-black mb-3">
+    <nav className="fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-white  mb-3">
         <div className="container lg:px-32 px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase "
+              className="text-2xl font-medium leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase "
               to="/"
             >
               pristine perfumes
@@ -39,27 +44,27 @@ const Header = () => {
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               
               <li>
-              <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/home">home</NavLink>
+              <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/home">home</NavLink>
             </li>
             <li>
-              <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/blog">blog</NavLink>
+              <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/blog">blog</NavLink>
             </li>
             
               {user && (
                 <li>
-                  <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/additem">add item</NavLink>
+                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/additem">add item</NavLink>
                   
                 </li>
               )}
               {user && (
                 <li>
-                  <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/manage">manage item</NavLink>
+                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/manage">manage item</NavLink>
                   
                 </li>
               )}
               {user && (
                 <li>
-                  <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/myitem">my item</NavLink>
+                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/myitem">my item</NavLink>
                   
                 </li>
               )}
@@ -68,9 +73,9 @@ const Header = () => {
             
             <li>
               {user ? (
-                <button className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" onClick={handleSingOut}>signout</button>
+                <button className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug text-white hover:opacity-75" onClick={handleSingOut}>signout</button>
               ) : (
-                <NavLink className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75" to="/login">Login</NavLink>
+                <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/login">Login</NavLink>
               )}
             </li>
               

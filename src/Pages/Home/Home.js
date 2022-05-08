@@ -36,6 +36,7 @@ const Home = () => {
         <Banner></Banner>
       </section>
       <section>
+        <p className="text-center text-4xl my-10 font-medium text-[#bf0abf]">inventory</p>
         <div
           className=" lg:w-[90%] my-10 mx-auto grid lg:grid-cols-3 
             md:grid-cols-3  gap-8 p-5 justify-center items-center  min-h-screen"
@@ -48,14 +49,14 @@ const Home = () => {
       <p className="text-center text-2xl font-medium my-2">
         <button
           onClick={handleNavigate}
-          className=" text-center  w-fit"
+          className=" link link-secondary text-center  w-fit"
           
         >
-          manage <ArrowRightIcon className="h-5 inline w-5"/>
+          manage inventory <ArrowRightIcon className="h-5 inline w-5"/>
         </button>
       </p>
       <section>
-        <div className="m-10">
+        <div className="m-10 ">
           <Slider></Slider>
         </div>
       </section>

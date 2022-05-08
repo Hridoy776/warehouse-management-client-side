@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import { EffectCube, Pagination } from "swiper";
 const Slider = () => {
   return (
-    <div className="lg:w-[50%] mx-auto">
+    <div className="lg:w-[50%]  mx-auto">
         <Swiper
       effect={"cube"}
       grabCursor={true}
@@ -26,75 +26,51 @@ const Slider = () => {
       className="mySwiper"
     >
       <SwiperSlide >
-        <div className="card w-full mx-auto bg-base-100 shadow-xl image-full">
+        <div className=" w-full mx-auto   shadow-xl image-full">
           <figure>
             <img
-              className="w-full"
-              src="https://api.lorem.space/image/shoes?w=400&h=225"
+              className="w-full rounded-lg"
+              src="https://i.ibb.co/qyTh7hg/maxim-lozyanko-q-Fsxwpo-DIB4-unsplash.jpg"
               alt="Shoes"
             />
           </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
+          
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="card w-full mx-auto bg-base-100 shadow-xl image-full">
+        <div className=" w-full mx-auto  shadow-xl image-full">
           <figure>
             <img
-              className="w-full"
-              src="https://api.lorem.space/image/shoes?w=400&h=225"
+              className="w-full rounded-lg"
+              src="https://i.ibb.co/db10n2v/alfred-guzman-v6-Rj0-WB6-F0-I-unsplash.jpg"
               alt="Shoes"
             />
           </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
+          
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="card w-full mx-auto bg-base-100 shadow-xl image-full">
+        <div className=" w-full mx-auto  shadow-xl image-full">
           <figure>
             <img
-              className="w-full"
-              src="https://api.lorem.space/image/shoes?w=400&h=225"
+              className="w-full rounded-lg"
+              src="https://i.ibb.co/9tTqCq6/ruijia-wang-K1-Il-F2y-YX8-Q-unsplash.jpg"
               alt="Shoes"
             />
           </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
+          
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="card w-full mx-auto bg-base-100 shadow-xl image-full">
+        <div className=" w-full mx-auto  shadow-xl image-full">
           <figure>
             <img
-              className="w-full"
-              src="https://api.lorem.space/image/shoes?w=400&h=225"
+              className="w-full rounded-lg"
+              src="https://i.ibb.co/Ry4txf0/siora-photography-Lk-T5-JCe-PUY-unsplash.jpg"
               alt="Shoes"
             />
           </figure>
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <button className="btn btn-primary">Buy Now</button>
-            </div>
-          </div>
+          
         </div>
       </SwiperSlide>
     </Swiper>
