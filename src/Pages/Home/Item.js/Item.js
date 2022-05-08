@@ -15,7 +15,7 @@ const Item = ({ item }) => {
   }
   return (
     <>
-      <div data-aos="zoom-in" className="card w-full h-[550px] shadow-2xl mx-auto">
+      <div data-aos="zoom-in" className="card w-full h-[600px] shadow-2xl mx-auto">
         <figure>
           <img className="w-[300px] h-[200px]" src={img} alt="car!" />
         </figure>

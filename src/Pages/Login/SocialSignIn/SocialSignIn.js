@@ -17,7 +17,6 @@ const SocialSignIn = () => {
       navigate(from, { replace: true });
     }
   }, [token, from, navigate]);
-  
   if(loading){
     return (
       <div className="h-screen flex justify-center">
@@ -25,7 +24,6 @@ const SocialSignIn = () => {
       </div>
     );
   }
-
   const handleGoogleSingIn = () => {
     signInWithGoogle();
   };

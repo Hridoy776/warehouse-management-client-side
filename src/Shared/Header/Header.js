@@ -29,7 +29,7 @@ const Header = () => {
     }
   }
   return (
-    <nav className={colorChange ? "fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-[#3D4451] mb-3":"fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3    mb-3"}>
+    <nav className={colorChange ? "fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-[#3D4451] mb-3":"fixed shadow-md z-50 top-0 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-[#341834ad]   mb-3"}>
         <div className="container lg:px-32 px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <Link
@@ -58,9 +58,7 @@ const Header = () => {
               <li>
               <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75  " to="/home">home</NavLink>
             </li>
-            <li>
-              <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/blog">blog</NavLink>
-            </li>
+            
             
               {user && (
                 <li>
@@ -70,22 +68,24 @@ const Header = () => {
               )}
               {user && (
                 <li>
-                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/manage">manage item</NavLink>
+                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/manage">manage items</NavLink>
                   
                 </li>
               )}
               {user && (
                 <li>
-                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/myitem">my item</NavLink>
+                  <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/myitem">my items</NavLink>
                   
                 </li>
               )}
               
-                  
+              <li>
+              <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/blog">blogs</NavLink>
+            </li> 
             
             <li>
               {user ? (
-                <button className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  btn-outline btn-secondary text-white hover:opacity-75" onClick={handleSingOut}>signout</button>
+                <button className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  w-fit   bg-[purple] hover:bg-[white] hover:text-[#8E9299]   text-white hover:opacity-75" onClick={handleSingOut}>signout</button>
               ) : (
                 <NavLink style={navLinkStyles} className="px-3 py-2 flex items-center text-sm uppercase font-bold leading-snug  hover:opacity-75" to="/login">Login</NavLink>
               )}

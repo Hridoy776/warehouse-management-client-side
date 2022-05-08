@@ -12,8 +12,9 @@ const AddItem = () => {
     const supplier = e.target.supplier.value;
     const img = e.target.img.value;
     const email = user.email;
+    const description=e.target.description.value;
 
-    const newItem = { name, price, quantity, supplier, img, email };
+    const newItem = { name, price, quantity, supplier, img, email,description };
     console.log(newItem);
     const url = `https://lit-oasis-49315.herokuapp.com/add?email=${user?.email}`;
     fetch(url, {
@@ -31,7 +32,7 @@ const AddItem = () => {
   };
   return (
     <div className="flex flex-col justify-center items-center mt-[100px]">
-      <p className="text-6xl my-10 font-500 text-[purple]">ADD ITEM</p>
+      <p className="text-5xl my-10 font-500 text-[purple]">ADD ITEM</p>
       <form
         onSubmit={handlAddItem}
         className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 mb-10"
@@ -88,6 +89,16 @@ const AddItem = () => {
               name="supplier"
               id="4"
               placeholder="supplier"
+              required
+            />
+          </div>
+          <div className="form-control mt-3">
+            <textarea
+              className=" textarea textarea-secondary"
+              type="textarea"
+              name="description"
+              id="4"
+              placeholder="description"
               required
             />
           </div>

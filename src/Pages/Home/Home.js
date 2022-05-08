@@ -58,7 +58,7 @@ const Home = () => {
           className=" link link-secondary text-center  w-fit"
           
         >
-          manage inventory <ArrowRightIcon className="h-5 inline w-5"/>
+          manage inventories <ArrowRightIcon className="h-5 inline w-5"/>
         </button>
       </p>
       <section>

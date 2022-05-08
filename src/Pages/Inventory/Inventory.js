@@ -73,15 +73,17 @@ const Inventory = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center mt-[100px]">
+    <div className="flex flex-col items-center min-h-screen justify-center mt-[100px]">
       <div class="card lg:card-side bg-base-100 shadow-xl">
         <figure className="p-2">
           <img className="rounded-lg " src={item.img} alt="Album" />
         </figure>
-        <div class="card-body h-[400px] my-auto">
-          <p className="text-4xl ">{item.name}</p>
+        <div class="card-body w-[350px]  h-fit my-auto">
+          <p className="text-4xl text-[#74092d] font-[600] ">{item.name}</p>
+          <p className="text-xl">id:{item._id}</p>
           <p className="text-2xl">price:{item.price}</p>
           <p className="text-2xl ">quantity:{item.quantity}</p>
+          <p>{item.description}</p>
           <button
             onClick={delevary}
             className="btn bg-[purple] hover:bg-[white] hover:text-[purple] w-[300px]"
@@ -113,7 +115,7 @@ const Inventory = () => {
           className=" link link-secondary text-center  w-fit"
           
         >
-          manage inventory <ArrowRightIcon className="h-5 inline w-5"/>
+          manage inventories <ArrowRightIcon className="h-5 inline w-5"/>
         </button>
       </p>
       <ToastContainer />

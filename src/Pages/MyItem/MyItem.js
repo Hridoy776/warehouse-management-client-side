@@ -49,7 +49,7 @@ const MyItem = () => {
       });
   };
   return (
-    <div className="mt-[100px] h-screen">
+    <div className="mt-[100px] min-h-screen">
       <p className="  text-4xl my-10 font-500 text-[purple] text-center">
         MY ITEMS
       </p>
